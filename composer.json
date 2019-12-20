@@ -34,7 +34,7 @@
         },
         "hooks": {
             "pre-commit": [
-              "echo committing as $(git config user.name)",
+              "echo committing as aa $(git config user.name)",
               "composer run lint"
             ]
         }
