@@ -17,7 +17,7 @@ Route::get('/about', 'StaticPagesController@about')->name('about');
 
 Route::get('signup', 'UsersController@create')->name('signup');
 Route::resource('users', 'UsersController'); // 第一個參數為資源名稱，第二個參數為控制器名稱
-// 上一个行相当以下RESTful
+// 上一个行相当于以下RESTful
 // Route::get('/users', 'UsersController@index')->name('users.index');
 // Route::get('/users/create', 'UsersController@create')->name('users.create');
 // Route::get('/users/{user}', 'UsersController@show')->name('users.show');
@@ -29,4 +29,6 @@ Route::resource('users', 'UsersController'); // 第一個參數為資源名稱�
 Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
+
+Route::get('signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
 
