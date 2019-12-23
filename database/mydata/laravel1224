@@ -1,0 +1,87 @@
+/*
+SQLyog Ultimate v12.08 (64 bit)
+MySQL - 5.7.28 : Database - laravel
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`laravel` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `laravel`;
+
+/*Table structure for table `articles` */
+
+DROP TABLE IF EXISTS `articles`;
+
+CREATE TABLE `articles` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `articles` */
+
+/*Table structure for table `migrations` */
+
+DROP TABLE IF EXISTS `migrations`;
+
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `migrations` */
+
+insert  into `migrations`(`id`,`migration`,`batch`) values (16,'2014_10_12_000000_create_users_table',1),(17,'2014_10_12_100000_create_password_resets_table',1),(18,'2019_12_22_141738_create_articles_table',1),(19,'2019_12_23_101205_add_is_admin_to_users_table',1),(20,'2019_12_23_145539_add_activation_to_users_table',1);
+
+/*Table structure for table `password_resets` */
+
+DROP TABLE IF EXISTS `password_resets`;
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `password_resets` */
+
+/*Table structure for table `users` */
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `activation_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `activated` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `users` */
+
+insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`,`is_admin`,`activation_token`,`activated`) values (1,'Summer','summer@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','opGNbvFrGF','1995-09-06 10:19:46','2019-12-23 15:10:22',1,NULL,1),(2,'Mrs. Alva Sanford IV','lexi86@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','ky7jwbJgdK','2018-12-13 19:15:05','2018-12-13 19:15:05',0,NULL,1),(3,'Berry O\'Reilly','west.darius@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','yVUktwOJnj','2008-11-14 17:40:21','2008-11-14 17:40:21',0,NULL,1),(4,'Cleora Cummerata','hamill.donna@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','Jxv0YgBJIR','1973-03-25 04:24:30','1973-03-25 04:24:30',0,NULL,1),(5,'Holden Schuster','lilla47@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','Vtjs14IETt','1985-07-22 09:33:00','1985-07-22 09:33:00',0,NULL,1),(6,'Devante Roberts','anabel.grant@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','XBxcH40N0v','1974-07-23 19:25:45','1974-07-23 19:25:45',0,NULL,1),(7,'Justice Kertzmann','delphia.stark@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','fo2DYlg56u','1992-07-09 17:38:19','1992-07-09 17:38:19',0,NULL,1),(8,'Marlee Nicolas','maegan.wolff@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','fjpOb4PdE8','1977-04-17 04:26:08','1977-04-17 04:26:08',0,NULL,1),(9,'Frederique Satterfield','libby.bernier@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','fA1hytZkW8','1997-12-19 03:21:49','1997-12-19 03:21:49',0,NULL,1),(10,'Olen Fritsch','kenneth68@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','EcsuWdI3aj','2008-06-01 01:29:56','2008-06-01 01:29:56',0,NULL,1),(11,'Janet Halvorson','glebsack@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','eAjxLdMiBj','1980-08-13 21:26:13','1980-08-13 21:26:13',0,NULL,1),(12,'Prof. Titus Kuvalis','yarmstrong@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','gfOfIITX8q','2018-04-23 03:18:33','2018-04-23 03:18:33',0,NULL,1),(13,'Dr. Meagan Yost','bryan@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','xMugh1Uux5','1972-08-02 20:26:38','1972-08-02 20:26:38',0,NULL,1),(14,'Ike Kihn','rau.felix@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','1wbH3oSeZy','1974-03-22 18:17:00','1974-03-22 18:17:00',0,NULL,1),(15,'Marcelo Stokes','eborer@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','9ZBYJIXCXo','2008-07-19 15:01:33','2008-07-19 15:01:33',0,NULL,1),(16,'Prof. Durward Corwin','hodkiewicz.kaylee@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','4wZNO3VfW6','2002-09-23 23:30:37','2002-09-23 23:30:37',0,NULL,1),(17,'Jackeline Skiles','randall.leuschke@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','hcr1cjkl0o','2008-02-14 19:50:59','2008-02-14 19:50:59',0,NULL,1),(18,'Javier Gaylord IV','barton.zackary@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','Y1Wd9wEJxt','1981-05-09 03:53:50','1981-05-09 03:53:50',0,NULL,1),(19,'Mrs. Delores Champlin PhD','douglas.kelsi@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','Js0pUNCg8n','1999-08-13 00:38:26','1999-08-13 00:38:26',0,NULL,1),(20,'Ottilie Funk','idicki@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','ks3fDMUFJo','2009-12-19 09:06:35','2009-12-19 09:06:35',0,NULL,1),(21,'Mr. Chesley VonRueden','drunolfsdottir@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','KsxH3kk450','1995-11-09 17:56:10','1995-11-09 17:56:10',0,NULL,1),(22,'Emelia Willms','omosciski@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','ANlQCXA5hR','2005-04-20 05:39:09','2005-04-20 05:39:09',0,NULL,1),(23,'Mr. Cedrick O\'Kon MD','vicenta.robel@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','Rq94CbvOtr','1994-08-23 02:48:49','1994-08-23 02:48:49',0,NULL,1),(24,'Ned Lang Jr.','allen23@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','yudu7HhDHC','1996-10-04 15:06:34','1996-10-04 15:06:34',0,NULL,1),(25,'Edwin Grady','ulesch@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','VqZZQbQSLF','1973-05-05 22:56:09','1973-05-05 22:56:09',0,NULL,1),(26,'Junior Schaefer II','adalberto44@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','Zq0otLEA76','1989-07-30 18:47:57','1989-07-30 18:47:57',0,NULL,1),(27,'Mr. Heber Renner I','stamm.evans@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','ZMZGRqtHnK','2016-12-08 05:57:09','2016-12-08 05:57:09',0,NULL,1),(28,'Gilberto Glover','kassulke.aryanna@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','9TmWPBisBA','2017-08-15 15:07:37','2017-08-15 15:07:37',0,NULL,1),(29,'Lesley Corwin','ureilly@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','0mBSf6ejAT','1982-07-10 12:05:40','1982-07-10 12:05:40',0,NULL,1),(30,'Augustine Goldner','cronin.albert@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','EhyWjxNqWu','2012-11-19 10:05:37','2012-11-19 10:05:37',0,NULL,1),(31,'Mr. Ronaldo Schinner MD','maryse.hermann@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','uJ3WbdjsVj','1984-12-27 00:51:04','1984-12-27 00:51:04',0,NULL,1),(32,'Bulah Hettinger','cswift@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','2nK9nCTj0H','1978-03-15 20:19:09','1978-03-15 20:19:09',0,NULL,1),(33,'Miss Tia Pollich','uheidenreich@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','t74np227Bk','1989-06-12 07:51:33','1989-06-12 07:51:33',0,NULL,1),(34,'Bryon Zboncak','lura.lang@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','Pcfoa8fR5o','1972-11-10 00:56:12','1972-11-10 00:56:12',0,NULL,1),(35,'Corrine Hills I','rosenbaum.barrett@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','X7MOJj4hVy','1991-05-02 06:53:23','1991-05-02 06:53:23',0,NULL,1),(36,'Victoria Konopelski','tnienow@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','Jlms1yOiax','1990-08-06 21:27:08','1990-08-06 21:27:08',0,NULL,1),(37,'Miss Hollie Kling','caitlyn.rempel@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','JysIJkW2eR','2008-09-20 02:05:30','2008-09-20 02:05:30',0,NULL,1),(38,'Forest Gleason','krajcik.brandy@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','qeUqhqT0Bq','1994-10-13 20:18:09','1994-10-13 20:18:09',0,NULL,1),(39,'Wava Keeling V','peffertz@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','DfDukdfeVJ','2005-01-27 10:42:52','2005-01-27 10:42:52',0,NULL,1),(40,'Daisha Koelpin','xdooley@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','UeLHxubQkP','1992-10-07 09:45:15','1992-10-07 09:45:15',0,NULL,1),(41,'Mr. Jessy Schaden','wade.runte@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','r8kRe44hYU','1980-07-03 19:25:11','1980-07-03 19:25:11',0,NULL,1),(42,'Lionel Hickle','lynn44@example.org','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','eHntjt3ASg','2009-06-24 23:09:28','2009-06-24 23:09:28',0,NULL,1),(43,'Miss Nova Reilly','georgianna.zboncak@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','8AXSyVWUz5','2002-06-25 15:55:53','2002-06-25 15:55:53',0,NULL,1),(44,'Alvah Weber','bschmitt@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','6lcCZSjuNH','1987-05-27 00:12:09','1987-05-27 00:12:09',0,NULL,1),(45,'Mac Hackett','wferry@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','o6JAVBbHFQ','2009-09-04 19:50:37','2009-09-04 19:50:37',0,NULL,1),(46,'Mac Upton DVM','lilliana02@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','QOdOQVLFRw','1987-08-23 03:31:36','1987-08-23 03:31:36',0,NULL,1),(47,'Columbus Trantow','karlie.kshlerin@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','W2Vd7K8T6Q','2009-07-22 19:42:45','2009-07-22 19:42:45',0,NULL,1),(48,'Mrs. Annalise Nikolaus PhD','alessia.turner@example.net','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','aqRRcG8Cb9','2000-11-04 11:24:33','2000-11-04 11:24:33',0,NULL,1),(49,'Zane Cassin','grover73@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','YTVspxgAct','1982-09-15 01:45:14','1982-09-15 01:45:14',0,NULL,1),(50,'Tomasa Reinger','kailey53@example.com','2019-12-23 15:10:22','$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm','KDuz1N6aHg','2018-12-22 13:17:09','2018-12-22 13:17:09',0,NULL,1),(51,'jack','jack@qq.com',NULL,'$2y$10$DWvLAR0On9B4xItyP5eCi.0S2ogFfhWQDywG0OGRjV41VkGG1x/ku',NULL,'2019-12-23 15:43:19','2019-12-23 15:43:19',0,'yFNdxxJk0h',0),(52,'jack','jac11k@qq.com',NULL,'$2y$10$wu/nKTfB5rd0S4TzjJNW8OvtPrsY5oOnm2cSpU3bfDL3NEiIvWMuG',NULL,'2019-12-23 15:44:11','2019-12-23 15:44:11',0,'yL4tvQNwBA',0),(53,'jack','jac111k@qq.com',NULL,'$2y$10$YAtoZ88RobgyFY8TP49dB.GXKyhE8qONuBZbMpLHKyO2uj8qpabB2',NULL,'2019-12-23 15:45:03','2019-12-23 15:45:03',0,'Nyo68QdjXS',0),(54,'jack','jac1111k@qq.com',NULL,'$2y$10$R34Z1rRSVlozFR683I0pau9CRI2Z/lRFCZpbdwnWbPVg5vz6vLQbC',NULL,'2019-12-23 15:45:24','2019-12-23 15:47:55',0,NULL,1),(55,'rose','rose@qq.com',NULL,'$2y$10$JAgtIniDkvJuyQMWRlw9tOl.SY/9oBjtkFURvWGshPBWdahW2QsF2','rO0pUuNln5anmU9EDSn9iuGr9uTRVEUHDTyAnbxlUd2mRVZH9lbLbYTMJq59','2019-12-23 15:49:21','2019-12-23 15:52:35',0,NULL,1),(56,'tom','tom@qq.com',NULL,'$2y$10$LMjWA/hOCnG2NxLHAMxuuO8z.UavKx73oa/AMmtlIGD16ws7zFrIO',NULL,'2019-12-23 15:55:26','2019-12-23 15:55:52',0,NULL,1);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
