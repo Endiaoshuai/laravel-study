@@ -16,7 +16,7 @@ class UsersController extends Controller
     public function show(User $user)
     {
         // 通过 compact 方法转化为一个关联数组
-        var_dump(compact('user'));
+        // var_dump(compact('user'));
         return view('users.show', compact('user'));
     }
 }
