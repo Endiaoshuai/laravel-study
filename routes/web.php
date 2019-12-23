@@ -28,4 +28,4 @@ Route::resource('users', 'UsersController'); // 第一個參數為資源名稱�
 
 Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');
-Route::delete('logout', 'SessionController@destroy')->name('logout');
+Route::delete('logout', 'SessionsController@destroy')->name('logout');
