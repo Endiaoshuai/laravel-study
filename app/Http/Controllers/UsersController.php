@@ -8,6 +8,21 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     public function create()
     {
         return view('users.create');
@@ -47,14 +62,16 @@ class UsersController extends Controller
     // 利用了 Laravel 的『隐性路由模型绑定』功能，直接读取对应 ID 的用户实例 $user
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
     public function update(User $user, Request $request)
     {
+        $this->authorize('update', $user);
         $this->validate($request, [
             'name' => 'required|max:50',
-            'password'=> 'required|confirmed|min:6'
+            'password'=> 'nullable|confirmed|min:6'
         ]);
         
         $data = [];
