@@ -26,3 +26,6 @@ Route::resource('users', 'UsersController'); // 第一個參數為資源名稱�
 // Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 // Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
 
+Route::get('login', 'SessionsController@create')->name('login');
+Route::post('login', 'SessionsController@store')->name('login');
+Route::delete('logout', 'SessionController@destroy')->name('logout');
