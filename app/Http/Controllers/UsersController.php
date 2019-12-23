@@ -54,7 +54,7 @@ class UsersController extends Controller
         ]);
         
         Auth::login($user);
-        var_dump(Auth::login($user), $user); die();
+        // var_dump(Auth::login($user), $user); die();
         session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
         dump(session()->get('success'));
         // 等同于 redirect()->route('users.show', [$user->id]);
