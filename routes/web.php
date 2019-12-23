@@ -15,7 +15,7 @@ Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 
-Route::get('/signup', 'UsersController@signup')->name('signup');
+// Route::get('/signup', 'UsersController@create')->name('create');
 Route::resource('users', 'UsersController'); // 第一個參數為資源名稱，第二個參數為控制器名稱
 // 上一个行相当以下RESTful
 // Route::get('/users', 'UsersController@index')->name('users.index');
