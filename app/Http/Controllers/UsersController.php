@@ -20,8 +20,14 @@ class UsersController extends Controller
         return view('users.show', compact('user'));
     }
 
-    // public function signup()
-    // {
-    //     return view('users')
-    // }
+    public function store(Request $request)
+    {
+        // 数据校验， 由 App\Http\Controllers\Controller 类中的 ValidatesRequests 进行定义
+        $this->validate($request, [
+            'name' => 'required|max:50',
+            'emai' => 'required|email|unique:users|max:255',
+            'password' => 'required|confirmed|min:6'
+        ]);
+        return;
+    }
 }
