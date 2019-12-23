@@ -41,7 +41,29 @@ class UsersController extends Controller
         session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
         dump(session()->get('success'));
         // 等同于 redirect()->route('users.show', [$user->id]);
-        return redirect()->route('users.show', [$user]); // route方法会自动获取Model的主键
+        return redirect()->route('users.show', [$user]); // route方法会自动获取Model的主键   
+    }
+
+    // 利用了 Laravel 的『隐性路由模型绑定』功能，直接读取对应 ID 的用户实例 $user
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(User $user, Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:50',
+            'password'=> 'required|confirmed|min:6'
+        ]);
         
+        $data = [];
+        $data['name'] = $request->name;
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+        $user->update($data);
+        session()->flash('success', '个人资料更新成功！');
+        return redirect()->route('users.show', $user->id);
     }
 }
