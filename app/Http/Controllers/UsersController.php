@@ -34,9 +34,12 @@ class UsersController extends Controller
     // show 方法声明类型 Eloquent 模型 User
     public function show(User $user)
     {
-        // dump($user);
+        $statuses = $user->statuses()
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(10);
+
         // 通过 compact 方法转化为一个关联数组
-        return view('users.show', compact('user'));
+        return view('users.show', compact('user', 'statuses'));
     }
 
     public function store(Request $request)
