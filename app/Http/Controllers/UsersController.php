@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
@@ -112,13 +112,14 @@ class UsersController extends Controller
     {
         $view = 'emails.confirm';
         $data = compact('user');
-        $from = '455960162@qq.com';
-        $name = 'Endiaoshuai';
+        // 已经配置过QQ邮箱，不需要 from 方法
+        // $from = '455960162@qq.com';
+        // $name = 'Endiaoshuai';
         $to = $user->email;
         $subject = "感谢注册 Weibo 应用！请确认你的邮箱！";
 
-        Mail::Send($view, $data, function ($message) use ($from, $name, $to, $subject) {
-            $message->from($from, $name)->to($to)->subject($subject);
+        Mail::Send($view, $data, function ($message) use ($to, $subject) {
+            $message->to($to)->subject($subject);
         });
     }
 }
