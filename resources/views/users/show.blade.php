@@ -7,6 +7,12 @@
     <section class="user_info">
       @include('shared._user_info', ['user' => $user])
     </section>
+
+    // 检查登录，只有登录了 才可以关注别人
+    @if (Auth::check())
+        @include('users._follow_form')
+    @endif
+
     <section class="stats mt-2">
         @include('shared._stats', ['user' => $user])
     </section>

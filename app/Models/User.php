@@ -62,7 +62,7 @@ class User extends Authenticatable
      */
     public function statuses()
     {
-        return $this->hasMany(Status::Class);
+        return $this->hasMany(Status::class);
     }
 
     public function feed()
@@ -74,13 +74,13 @@ class User extends Authenticatable
     // 粉丝
     public function followers()
     {
-        return $this->belongsToMany(User::Class, 'followers', 'user_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
     }
 
     // 关注
     public function followings()
     {
-        return $this->belongsToMany(User::Class, 'followers', 'follower_id', 'user_id');
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
     public function follow($user_ids)
@@ -96,7 +96,7 @@ class User extends Authenticatable
         if (!is_array($user_ids)) {
             $user_ids = compact('user_ids');
         }
-        $this->followings()->delach($user_ids);
+        $this->followings()->detach($user_ids);
     }
 
     public function isFollowing($user_id)
