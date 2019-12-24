@@ -8,7 +8,6 @@
       @include('shared._user_info', ['user' => $user])
     </section>
 
-    // 检查登录，只有登录了 才可以关注别人
     @if (Auth::check())
         @include('users._follow_form')
     @endif
